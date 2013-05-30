@@ -1,0 +1,9 @@
+box: pjvds/scala
+build:
+  steps:
+    - script:
+        name: build
+        code: sbt compile test:compile
+    - script:
+        name: test
+        code: sbt -Dakka.test.timefactor=1.5 'set concurrentRestrictions in Global += Tags.limit(Tags.Test, 1)' test
